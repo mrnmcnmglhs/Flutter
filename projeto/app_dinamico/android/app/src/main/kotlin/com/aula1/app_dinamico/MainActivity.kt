@@ -1,0 +1,5 @@
+package com.aula1.app_dinamico
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity : FlutterActivity()
