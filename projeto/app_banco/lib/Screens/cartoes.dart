@@ -11,27 +11,46 @@ class _CartoesState extends State<Cartoes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0XFF0f3375),
       appBar: AppBar(
-        backgroundColor: Color(0XFFfb6f92),
-        title: Text("Cartões")
+        backgroundColor: Color(0XFF2382f7),
+        title: Text("Cartões", style: TextStyle(color: Colors.white)),
       ),
 
-      body: 
-      Column(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Row(),
           Container(
-            width: 360,
-            height: 250,
-            margin: EdgeInsets.all(30),
+            margin: EdgeInsets.only(top: 20, bottom: 20),
+            width: 350,
+            height: 200,
             decoration: BoxDecoration(
-              color: Color(0XFFff92c2),
-              borderRadius: BorderRadius.circular(20)
+              image: DecorationImage(
+                image: AssetImage("images/cartao.png"),
+                fit: BoxFit.cover,
+              ),
+              borderRadius: BorderRadius.circular(10),
             ),
-          )
-          
+          ),
+          Row(
+            children: [
+              Container(
+                margin: EdgeInsets.all(20),
+                child: Text("Pegar Fatura"),
+              )
+            ]
+          ),
+          Column(
+            children: [
+              Text(
+                "Fatura",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            ],
+          ),
         ],
-      )
+      ),
     );
   }
 }

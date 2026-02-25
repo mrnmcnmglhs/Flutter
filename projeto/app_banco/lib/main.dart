@@ -27,10 +27,10 @@ class TelaInicial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0XFF0f3375),
       appBar: AppBar(
-        backgroundColor: Color(0XFFfb6f92),
-        title: Row(children: [Icon(Icons.person), Text("Olá S/N")]),
+        backgroundColor: Color(0XFF2382f7),
+        title: Row(children: [Icon(Icons.person, color: Colors.white,), Text("Olá S/N", style: TextStyle(color: Colors.white),)]),
       ),
       body: Column(
         children: [
@@ -42,7 +42,7 @@ class TelaInicial extends StatelessWidget {
                 height: 80,
                 margin: const EdgeInsets.only(top: 20, bottom: 20),
                 decoration: BoxDecoration(
-                  color: Color(0XFFfff0f3),
+                  color: Color(0XFFe8f3fe),
                   borderRadius: BorderRadius.circular(20)
                 ),
                 child: 
@@ -60,28 +60,24 @@ class TelaInicial extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               TextButton(
-                style: TextButton.styleFrom(backgroundColor: Color(0XFFfff0f3), foregroundColor: Colors.black),
+                style: TextButton.styleFrom(backgroundColor: Color(0XFFe8f3fe), foregroundColor: Colors.black),
                 onPressed: () {
                   Navigator.push( context, MaterialPageRoute(builder: (context) => Pix()),);
                 }, child: Column(children: [Icon(Icons.pix),Text("Pix") ]),
               ),
 
               TextButton( 
-                style: TextButton.styleFrom(backgroundColor: Color(0XFFfff0f3), foregroundColor: Colors.black),
+                style: TextButton.styleFrom(backgroundColor: Color(0XFFe8f3fe), foregroundColor: Colors.black),
                 onPressed: () {
                   Navigator.push( context, MaterialPageRoute(builder: (context) => Boletos()),);
                 }, child: Column( children: [ Icon(Icons.document_scanner), Text("Boletos")], ),
               ),
 
               TextButton(
-                style: TextButton.styleFrom(backgroundColor: Color(0XFFfff0f3), foregroundColor: Colors.black),
+                style: TextButton.styleFrom(backgroundColor: Color(0XFFe8f3fe), foregroundColor: Colors.black),
                 onPressed: (){
                 Navigator.push( context, MaterialPageRoute(builder: (context) => Cartoes()),);
               }, child: Column(children: [Icon(Icons.credit_card), Text("Cartões") ],)),
-              
-              TextButton(
-                style: TextButton.styleFrom(backgroundColor: Color(0XFFfff0f3), foregroundColor: Colors.black),
-                onPressed: AlertDialog.adaptive, child: Column(children: [Icon(Icons.attach_money), Text("Emprestimos") ],))
             ],
           ),
         ],

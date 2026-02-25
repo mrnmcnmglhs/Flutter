@@ -12,9 +12,10 @@ class _PixState extends State<Pix> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0XFF0f3375),
       appBar: AppBar(
-        title: Text("Área Pix"),
-        backgroundColor: Color(0XFFfb6f92),
+        title: Text("Área Pix", style: TextStyle(color: Colors.white),),
+        backgroundColor: Color(0XFF2382f7),
       ),
       body: Center(
         child: Container(
