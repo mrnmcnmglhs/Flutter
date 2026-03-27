@@ -1,3 +1,4 @@
+import 'package:app_portifolio/screens/telaperfil.dart';
 import 'package:flutter/material.dart';
 
 class TelaSplash extends StatefulWidget {
@@ -11,7 +12,9 @@ class _TelaSplashState extends State<TelaSplash> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(seconds: 12), () {
+    // ⏳ Espera 12 segundos
+    Future.delayed(Duration(seconds: 10), () {
+      // 🔁 Troca de tela
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => TelaPerfil()),
@@ -22,7 +25,8 @@ class _TelaSplashState extends State<TelaSplash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Image.asset('images/video_portifolio.gif', width: double.infinity, height: double.infinity,fit: BoxFit.cover,),
-      ),
+      backgroundColor: Colors.white,
+      body: Image.asset('images/video_portifolio.gif', width: double.infinity, height: double.infinity,fit: BoxFit.cover,),
+    );
   }
 }

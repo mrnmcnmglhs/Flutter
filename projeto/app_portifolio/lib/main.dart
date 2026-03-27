@@ -1,4 +1,6 @@
+
 import 'package:app_portifolio/screens/telaperfil.dart';
+import 'package:app_portifolio/screens/telasplash.dart';
 
 import 'package:flutter/material.dart';
 
