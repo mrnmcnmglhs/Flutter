@@ -1,3 +1,5 @@
+import 'package:app_portifolio/screens/telaperfil.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,17 +13,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: TelaSplash()
-    );
-  }
-}
-
-class TelaSplash extends StatelessWidget {
-  const TelaSplash({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body:Image.asset('images/video_portifolio.gif', width: double.infinity, height: double.infinity,fit: BoxFit.cover,),
     );
   }
 }
