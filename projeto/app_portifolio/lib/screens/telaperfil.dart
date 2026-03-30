@@ -1,6 +1,12 @@
 import 'package:app_portifolio/components/cardSkill.dart';
 import 'package:app_portifolio/components/iconSkill.dart';
+import 'package:app_portifolio/components/botao.dart';
+
+import 'package:app_portifolio/screens/telaprojetos.dart';
+
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class TelaPerfil extends StatelessWidget {
   const TelaPerfil({super.key});
@@ -62,11 +68,44 @@ class TelaPerfil extends StatelessWidget {
                                   height: 1.1,
                                 ),
                               ),
+
+                              const SizedBox(height: 20),
+
+                              // 🔘 BOTÕES ADICIONADOS AQUI
+                              Row(
+                                children: [
+                                  BotaoPersonalizado(
+                                    texto: "Projetos",
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => const Telaprojetos(),
+                                        ),
+                                      );
+                                    },
+                                  ),
+
+                                  const SizedBox(width: 10),
+
+                                  BotaoPersonalizado(
+                                    texto: "GitHub",
+                                    onPressed: () async {
+                                      final url = Uri.parse("https://github.com/mrnmcnmglhs");
+
+                                      if (!await LaunchUrl_(url)) {
+                                        throw Exception("Não foi possível abrir o GitHub");
+                                      }
+                                    },
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ),
                       ],
                     ),
+
                     Container(
                       width: double.infinity,
                       height: 350,
@@ -105,8 +144,20 @@ class TelaPerfil extends StatelessWidget {
                                 ),
                               ),
 
-                              Cardskill(procentagem: "80%", icon: Iconskill(img: 'images/figma.jpg'), icon2: Iconskill(img: 'images/vscode.jpg'), icon3: Iconskill(img: 'images/sql.jpg'), icon4: Iconskill(img: 'images/canva.jpg'),),
-                              Cardskill(procentagem: "50%", icon: Iconskill(img: 'images/python.jpg'), icon2: icon2, icon3: icon3, icon4: icon4)
+                              Cardskill(
+                                procentagem: "80%",
+                                icon: Iconskill(img: 'images/figma.jpg'),
+                                icon2: Iconskill(img: 'images/vscode.jpg'),
+                                icon3: Iconskill(img: 'images/sql.jpg'),
+                                icon4: Iconskill(img: 'images/canva.jpg'),
+                              ),
+                              Cardskill(
+                                procentagem: "50%",
+                                icon: Iconskill(img: 'images/vscode.jpg'),
+                                icon2: Iconskill(img: 'images/vscode.jpg'),
+                                icon3: Iconskill(img: 'images/vscode.jpg'),
+                                icon4: Iconskill(img: 'images/vscode.jpg'),
+                              )
                             ],
                           ),
                         ),
