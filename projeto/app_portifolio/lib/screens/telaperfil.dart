@@ -5,7 +5,6 @@ import 'package:app_portifolio/components/botao.dart';
 import 'package:app_portifolio/screens/telaprojetos.dart';
 
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 
 class TelaPerfil extends StatelessWidget {
@@ -92,10 +91,6 @@ class TelaPerfil extends StatelessWidget {
                                     texto: "GitHub",
                                     onPressed: () async {
                                       final url = Uri.parse("https://github.com/mrnmcnmglhs");
-
-                                      if (!await LaunchUrl_(url)) {
-                                        throw Exception("Não foi possível abrir o GitHub");
-                                      }
                                     },
                                   ),
                                 ],

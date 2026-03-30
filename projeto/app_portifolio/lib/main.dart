@@ -4,6 +4,8 @@ import 'package:app_portifolio/screens/telasplash.dart';
 
 import 'package:flutter/material.dart';
 
+import 'screens/telasplash.dart';
+
 void main() {
   runApp(const MyApp());
 }

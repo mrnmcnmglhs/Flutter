@@ -35,7 +35,7 @@ class CardProjeto extends StatelessWidget {
             child: Text(
               titulo,
               style: const TextStyle(
-                fontFamily: 'Smile Delight', // ⚠️ CONFERE SUA FONTE
+                fontFamily: 'Smile Delight', 
                 fontSize: 32,
                 color: Colors.white,
               ),
@@ -48,7 +48,6 @@ class CardProjeto extends StatelessWidget {
             child: Image.asset(
               imagem,
               height: 120,
-              // ⚠️ CAMINHO DA IMAGEM AQUI
             ),
           ),
         ],
