@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:portifolio/components/card_projeto.dart';
 
@@ -9,50 +7,67 @@ class TelaProjetos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4B942), // fundo amarelo
-
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: ListView(
-            children: [
-
-              const Text(
-                "Projetos",
-                style: TextStyle(
-                  fontFamily: 'Smile Delight',
-                  fontSize: 48,
-                  color: Colors.black,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        
+        backgroundColor: const Color.fromARGB(0, 255, 255, 255),
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: Text(
+          "Projetos",
+          style: TextStyle(
+            fontFamily: 'Smile Delight',
+            fontSize: 68,
+            color: Colors.black,
+            height: 2
+          ),
+        ),
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFFFFF8E1), Color(0xFFFFD54F)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+            child: ListView(
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              children: [
+                const Text(
+                  "Conheca os meus principais projetos!",
+                  style: TextStyle(
+                    fontFamily: 'Panton',
+                    fontSize: 25,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
 
-              const SizedBox(height: 5),
+                const SizedBox(height: 35),
 
-              const Text(
-                "Conheça os meus principais projetos!",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                const CardProjeto(
+                  titulo: "Glimer",
+                  imagem: "images/glimer.png",
                 ),
-              ),
 
-              const SizedBox(height: 30),
+                const CardProjeto(
+                  titulo: "Aventuras Tuti-Frutti",
+                  imagem: "images/moranguinho.png",
+                ),
 
-              const CardProjeto(
-                titulo: "Glimer",
-                imagem: "images/glimer.png", 
-              ),
-
-              const CardProjeto(
-                titulo: "Aventuras\nTuti-Frutti",
-                imagem: "images/moranguinho.png",
-              ),
-
-              const CardProjeto(
-                titulo: "Amores &\nMorangos",
-                imagem: "images/amores_morangos.png",
-              ),
-            ],
+                const CardProjeto(
+                  titulo: "Amores & Morangos",
+                  imagem: "images/amores_morangos.png",
+                ),
+              ],
+            ),
           ),
         ),
       ),

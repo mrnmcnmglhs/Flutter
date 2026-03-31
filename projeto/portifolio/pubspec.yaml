@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
 
   url_launcher: ^6.2.5
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +67,17 @@ flutter:
     - images/fundo_perfil.png
     - images/trajetoria.png
     - images/figma.jpg
+    - images/glimer.png
+    - images/moranguinho.png
+    - images/amores_morangos.png
+    - images/uiux.png
+    - images/python.jpg
+    - images/mysql.jpg
+    - images/github.jpg
+    - images/flutter.jpg
+    - images/react.jpg
+    - images/firebase.jpg
+    - images/fast.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
