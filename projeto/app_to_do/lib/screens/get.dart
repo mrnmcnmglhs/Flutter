@@ -17,7 +17,7 @@ class _TelaGetState extends State<TelaGet> {
   void fazerGet() async {
     // função assincrona, pois espera a requisição
     final respostaServidor = await http.get(
-      Uri.parse("http://10.109.72.26:3000/tasks"),
+      Uri.parse("https://api-app-to-do.onrender.com/tasks"),
     );
     // final - espera receber uma atribuição, que é possivel muda um vez só
     // ent, ele espera a resposta do servidor(" "), e depois aguarda a resposta("ok" ou "erro")

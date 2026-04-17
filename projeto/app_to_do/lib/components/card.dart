@@ -1,35 +1,54 @@
 import 'package:flutter/material.dart';
 
 class CardTasks extends StatelessWidget {
-  final int indexOriginal;
-  Widget child;
+  // 1. Added 'final' to make the widget immutable
+  Color cor; 
+  final String title;
+  final String image;
+  final VoidCallback fazerDelete;
 
-  CardTasks({super.key, required this.indexOriginal, required this.child});
-  
-  final List<Color> _coresCard = const[
-    Color(0XFFF5A9C7),
-    Color(0XFF69C63D),
-    Color(0XFF62A4E2),
-    Color(0XFFF8A69B),
-  ];
+  // 2. Added 'const' to the constructor
+  CardTasks({
+    super.key,
+    required this.fazerDelete, 
+    required this.title, 
+    required this.image,
+    required this.cor,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final corAtual = _coresCard[indexOriginal % _coresCard.length];
-    return Stack(
-      children: [
-        Container(
-          width: 362,
-          height: 73,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            color: corAtual
-          ),
-          child: ListTile(
-              subtitle: Text("Item ${indexOriginal + 1}"),
-          ),
-        )
-      ],
+    return SizedBox(
+      width: 400,
+      height: 100,
+      child: Stack(
+        children: [
+          Container(
+            width: 362,
+            height: 73,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: cor
+            ),
+            child: ListTile(
+              // 3. Removed the Row. Image goes in leading, Text goes in title.
+              leading: Image.network(
+                image,
+                width: 40,
+                height: 40,
+                fit: BoxFit.cover, // Ensures the image doesn't stretch weirdly
+              ),
+              title: Text(title),
+              
+              // 4. Fixed the function execution!
+              trailing: GestureDetector(
+                onTap: fazerDelete, // Pass the function reference directly
+                child: const Icon(Icons.delete),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

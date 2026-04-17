@@ -15,7 +15,7 @@ class _TelaPostState extends State<TelaPost> {
   TextEditingController valorDigitado = TextEditingController();
 
   void fazerPost() async{
-    final respostaServidor = await http.post(Uri.parse("http://10.109.72.26:3000/tasks"), 
+    final respostaServidor = await http.post(Uri.parse("https://api-app-to-do.onrender.com/tasks"), 
       headers: {"Content-type": "aplication/json"}, // enviando um json para o post
       body: jsonEncode({
         "title": valorDigitado.text,
@@ -36,10 +36,20 @@ class _TelaPostState extends State<TelaPost> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0XFFF8E4C9),
-      appBar: AppBar(title: Text("Adiconar Tarefas"),),
       body: Center(
         child: Column(
           children: [
+            Padding(
+              padding: EdgeInsetsGeometry.only(top: 60, right: 25, bottom: 30),
+              child: Text(
+                "Adicione uma tarefa",
+                style: TextStyle(
+                  fontFamily: 'Bestigia',
+                  fontSize: 40,
+                  color: Colors.black,
+                ),
+              ),
+            ),
             Text("Inisira a sua tarefa"),
             TextField(controller: valorDigitado,),
             TextButton(onPressed: fazerPost, child: Text("Adicionar Dado"))

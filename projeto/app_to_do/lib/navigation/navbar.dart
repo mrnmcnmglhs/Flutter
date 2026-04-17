@@ -1,6 +1,7 @@
 import 'package:app_to_do/screens/delete.dart';
 import 'package:app_to_do/screens/get.dart';
 import 'package:app_to_do/screens/post.dart';
+import 'package:app_to_do/screens/put.dart';
 import 'package:flutter/material.dart';
 
 class Navbar extends StatefulWidget {
@@ -14,15 +15,15 @@ class _NavbarState extends State<Navbar> {
   // Por convenção no Dart, variáveis começam com letra minúscula
   int indexAtual = 0;
 
-  // Adicionei uma tela provisória no meio para bater com os 3 ícones da sua imagem
   List pages = [
     const TelaGet(),
     const TelaPost(),
+    const TelaPut(),
     const TelaDelete(),
   ];
 
   void mudarIndex(int novoIndex) {
-    // ATENÇÃO AQUI: Para a tela mudar visualmente, a alteração da variável
+    // Para a tela mudar visualmente, a alteração da variável
     // precisa estar dentro de um setState!
     setState(() {
       indexAtual = novoIndex;
@@ -58,17 +59,24 @@ class _NavbarState extends State<Navbar> {
                 ),
                 // Adicionar
                 IconButton(
-                  icon: const Icon(Icons.plumbing_sharp),
+                  icon: const Icon(Icons.add),
                   color: Colors.white,
                   iconSize: 40,
                   onPressed: () => mudarIndex(1),
+                ),
+                 // Editar
+                IconButton(
+                  icon: const Icon(Icons.edit),
+                  color: Colors.white,
+                  iconSize: 40,
+                  onPressed: () => mudarIndex(2),
                 ),
                 // Delete
                 IconButton(
                   icon: const Icon(Icons.delete_outline),
                   color: Colors.white,
                   iconSize: 40,
-                  onPressed: () => mudarIndex(2),
+                  onPressed: () => mudarIndex(3),
                 ),
               ],
             ),
