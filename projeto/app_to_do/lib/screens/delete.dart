@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:app_to_do/components/card.dart';
+import 'package:app_to_do/components/h2.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -23,7 +24,7 @@ class _TelaDeleteState extends State<TelaDelete> {
 
   void fazerGet() async {
     final respostaServidor = await http.get(
-      Uri.parse("https://api-app-to-do.onrender.com/tasks"),
+      Uri.parse("https://api-app-to-do-1.onrender.com/tasks"),
     );
 
     if (respostaServidor.statusCode == 200) {
@@ -36,7 +37,7 @@ class _TelaDeleteState extends State<TelaDelete> {
 
   void fazerDelete(dynamic id) async {
     final respostaServidor = await http.delete(
-      Uri.parse("https://api-app-to-do.onrender.com/tasks/$id"),
+      Uri.parse("https://api-app-to-do-1.onrender.com/tasks/$id"),
     );
 
     if (respostaServidor.statusCode == 200 ||
@@ -65,43 +66,31 @@ class _TelaDeleteState extends State<TelaDelete> {
     return Scaffold(
       backgroundColor: const Color(0XFFF8E4C9),
       // IMPLEMENTED COLOR LOGIC HERE:
-      body: Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsetsGeometry.only(top: 60, right: 60),
-              child: Text(
-                "Bem Vinde!",
-                style: TextStyle(
-                  fontFamily: 'Bestigia',
-                  fontSize: 64,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-
-            ListView.builder(
-              itemCount:
-                  listaApi.length, // Tells Flutter how many items to draw
-              itemBuilder: (context, index) {
-                final item = listaApi[index];
-
-                // The Magic: Modulo operator (%) ensures the index loops back to 0
-                // when it reaches the end of the colors list.
-                final corAtual = coresCard[index % coresCard.length];
-
-                return CardTasks(
-                  cor: corAtual, // Pass the dynamically calculated color
+      body: ListView(
+        // padding: EdgeInsets.all(20),
+        children: [
+          Column(
+            children: [
+              SizedBox(height: 20),
+              H2(subtitulo: 'Excloar as suas tarefas'),
+              
+              for (final item in listaApi)
+                CardTasks(
+                  cor:
+                      coresCard[listaApi.indexOf(item) %
+                          coresCard
+                              .length], // Pass the dynamically calculated color
                   fazerDelete: () => fazerDelete(item["id"]),
                   title: item["title"],
                   image: item["image"],
-                );
-              },
-            ),
-          ],
-        ),
+                ),
+            ],
+          ),
+        ],
       ),
     );
+    //   ),
+    // );
   }
 }
 
@@ -112,3 +101,27 @@ final List<Color> coresCard = const [
   Color(0XFF62A4E2),
   Color(0XFFF8A69B),
 ];
+
+
+
+          
+            // ListView.builder(
+            
+            //   itemCount:
+            //       listaApi.length, // Tells Flutter how many items to draw
+            //   itemBuilder: (context, index) {
+            //     final item = listaApi[index];
+
+            //     // The Magic: Modulo operator (%) ensures the index loops back to 0
+            //     // when it reaches the end of the colors list.
+            //     final corAtual = coresCard[index % coresCard.length];
+
+            //     return CardTasks(
+            //       cor: corAtual, // Pass the dynamically calculated color
+            //       fazerDelete: () => fazerDelete(item["id"]),
+            //       title: item["title"],
+            //       image: item["image"],
+            //     );
+            //   },
+            // ),
+          // ],

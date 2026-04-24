@@ -1,5 +1,6 @@
 import 'package:app_to_do/screens/delete.dart';
 import 'package:app_to_do/screens/get.dart';
+import 'package:app_to_do/screens/local.dart';
 import 'package:app_to_do/screens/post.dart';
 import 'package:app_to_do/screens/put.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class _NavbarState extends State<Navbar> {
     const TelaPost(),
     const TelaPut(),
     const TelaDelete(),
+    const TelaLocal(),
   ];
 
   void mudarIndex(int novoIndex) {
@@ -66,7 +68,7 @@ class _NavbarState extends State<Navbar> {
                 ),
                  // Editar
                 IconButton(
-                  icon: const Icon(Icons.edit),
+                  icon: const Icon(Icons.edit_outlined),
                   color: Colors.white,
                   iconSize: 40,
                   onPressed: () => mudarIndex(2),
@@ -77,6 +79,13 @@ class _NavbarState extends State<Navbar> {
                   color: Colors.white,
                   iconSize: 40,
                   onPressed: () => mudarIndex(3),
+                ),
+                // Local
+                IconButton(
+                  icon: const Icon(Icons.local_activity),
+                  color: Colors.white,
+                  iconSize: 40,
+                  onPressed: () => mudarIndex(4),
                 ),
               ],
             ),

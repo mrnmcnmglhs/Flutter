@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+import 'package:app_to_do/components/btn.dart';
+import 'package:app_to_do/components/h2.dart';
+import 'package:app_to_do/components/input.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -14,20 +17,23 @@ class _TelaPostState extends State<TelaPost> {
   // variavel que observa o que o user digita
   TextEditingController valorDigitado = TextEditingController();
 
-  void fazerPost() async{
-    final respostaServidor = await http.post(Uri.parse("https://api-app-to-do.onrender.com/tasks"), 
-      headers: {"Content-type": "aplication/json"}, // enviando um json para o post
+  void fazerPost() async {
+    final respostaServidor = await http.post(
+      Uri.parse("https://api-app-to-do-1.onrender.com/tasks"),
+      headers: {
+        "Content-type": "aplication/json",
+      }, // enviando um json para o post
       body: jsonEncode({
         "title": valorDigitado.text,
         "image": valorDigitado.text,
-        "status": valorDigitado.text
-      })
-    
+        "status": valorDigitado.text,
+      }),
     );
 
-    if (respostaServidor.statusCode == 201 || respostaServidor.statusCode == 200){
+    if (respostaServidor.statusCode == 201 ||
+        respostaServidor.statusCode == 200) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Sua tarefa foi adicionada com sucesso"))
+        SnackBar(content: Text("Sua tarefa foi adicionada com sucesso")),
       );
     }
   }
@@ -39,20 +45,23 @@ class _TelaPostState extends State<TelaPost> {
       body: Center(
         child: Column(
           children: [
+            H2(subtitulo: "Adicione novas tarefas"),
+            
             Padding(
-              padding: EdgeInsetsGeometry.only(top: 60, right: 25, bottom: 30),
+              padding: EdgeInsetsGeometry.only(right: 260),
               child: Text(
-                "Adicione uma tarefa",
+                "Insira a sua tarefa",
                 style: TextStyle(
-                  fontFamily: 'Bestigia',
-                  fontSize: 40,
+                  fontFamily: 'Rinnero',
+                  fontSize: 25,
                   color: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            Text("Inisira a sua tarefa"),
-            TextField(controller: valorDigitado,),
-            TextButton(onPressed: fazerPost, child: Text("Adicionar Dado"))
+            Input(controller: valorDigitado, placheholder: 'Ex: Jogar Amor Doce'),
+
+            Botao(conteudo: 'Adicionar', onPressed: fazerPost)
           ],
         ),
       ),

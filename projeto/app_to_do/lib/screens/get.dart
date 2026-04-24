@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:app_to_do/components/btn.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,7 +18,7 @@ class _TelaGetState extends State<TelaGet> {
   void fazerGet() async {
     // função assincrona, pois espera a requisição
     final respostaServidor = await http.get(
-      Uri.parse("https://api-app-to-do.onrender.com/tasks"),
+      Uri.parse("https://api-app-to-do-1.onrender.com/tasks"),
     );
     // final - espera receber uma atribuição, que é possivel muda um vez só
     // ent, ele espera a resposta do servidor(" "), e depois aguarda a resposta("ok" ou "erro")
@@ -40,37 +41,19 @@ class _TelaGetState extends State<TelaGet> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsetsGeometry.only(top: 60, right: 60),
+              padding: EdgeInsetsGeometry.only(top: 30),
               child: Text(
-                "Bem Vinde!",
+                "Bem vinde!",
                 style: TextStyle(
                   fontFamily: 'Bestigia',
-                  fontSize: 64,
+                  fontSize: 68,
                   color: Colors.black,
                 ),
               ),
             ),
 
             Text(resultado),
-            TextButton(
-              onPressed: fazerGet,
-              style: TextButton.styleFrom(
-                backgroundColor: const Color(0xFFF8E4C9), 
-                side: const BorderSide(color: Colors.black, width: 2.0),
-
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5), 
-                ),
-              ),
-              child: const Text(
-                "Recarregar Tarefas",
-                style: TextStyle(
-                  fontFamily: 'Bestigia',
-                  fontSize: 25,
-                  color: Colors.black,
-                ),
-              ),
-            ),
+            Botao(conteudo: 'Recarregar as Tarefas', onPressed: fazerGet)
           ],
         ),
       ),
