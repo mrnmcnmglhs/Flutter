@@ -11,7 +11,7 @@ class CardImage extends StatelessWidget {
       width: 150,
       height: 250,
       child: CachedNetworkImage(
-        imageUrl: "https://picsum.photos/200/300",
+        imageUrl: image,
         httpHeaders: const{
           // Esse cabeçalho finge que a requisição está vindo de um navegador de PC
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
