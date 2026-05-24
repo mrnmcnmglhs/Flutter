@@ -44,27 +44,58 @@ class _TelaGetState extends State<TelaGet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Se estiver carregando, mostra uma barra de progresso. Se não, mostra o Grid.
-      body: carregando
-          ? const Center(child: CircularProgressIndicator())
-          : resultado.isEmpty
-              ? const Center(child: Text("Nenhum dado encontrado."))
-              : GridView.builder(
-                  padding: const EdgeInsets.all(5),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 5.0,
-                    mainAxisSpacing: 3.0,
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.transparent, 
+        
+        
+        flexibleSpace: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('../../assets/images/header.png'), 
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+      ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('../../assets/images/fundo.png'), 
+            fit: BoxFit.cover, // Faz a imagem esticar para cobrir a tela toda sem achatar
+          ),
+        ),
+        
+  
+        child: carregando
+            ? const Center(child: CircularProgressIndicator())
+            : resultado.isEmpty
+                ? const Center(
+                    child: Text(
+                      "Nenhum dado encontrado.",
+                      style: TextStyle(color: Colors.white, backgroundColor: Colors.black54),
+                    ),
+                  )
+                : GridView.builder(
+                    padding: const EdgeInsets.all(5),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 5.0,
+                      mainAxisSpacing: 3.0,
+                    ),
+                    itemCount: resultado.length,
+                    itemBuilder: (context, index) {
+                      final item = resultado[index];
+                      return CardImage(image: item["poster"][0]);
+                    },
                   ),
-                  itemCount: resultado.length, // O tamanho do grid será o tamanho da resposta da API
-                  itemBuilder: (context, index) {
-                    final item = resultado[index];
-                    
-                    // Retorna apenas um CardImage para cada quadrado do Grid
-                    return CardImage(image: item["poster"][0]);
-                  },
-                ),
-      // botão de atualizar manualmente
+      ),
+      
+      // O botão flutuante continua no lugar dele, fora do body
       floatingActionButton: FloatingActionButton(
         onPressed: get,
         child: const Icon(Icons.refresh),
