@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:app_prova/components/Card.dart';
 import 'package:app_prova/components/UltimosDesenhos.dart';
 import 'package:app_prova/screens/desenho.dart';
 import 'package:app_prova/screens/post.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:app_prova/components/btnAdd.dart';
 
 class TelaGet extends StatefulWidget {
   const TelaGet({super.key});
@@ -20,6 +22,9 @@ class _TelaGetState extends State<TelaGet> {
   // Função para buscar os dados
   void get() async {
     try {
+      // Força o carregando a virar true para dar o feedback visual de refresh
+      setState(() => carregando = true);
+
       final requisicao = await http.get(
         Uri.parse("https://app-prova-api.onrender.com/dados"),
       );
@@ -37,7 +42,6 @@ class _TelaGetState extends State<TelaGet> {
     }
   }
 
-  // Isso faz com que a API seja chamada automaticamente ao abrir a tela
   @override
   void initState() {
     super.initState();
@@ -57,13 +61,19 @@ class _TelaGetState extends State<TelaGet> {
           height: double.infinity,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(
-                'assets/images/header.png',
-              ), // Caminho corrigido
+              image: AssetImage('assets/images/header.png'),
               fit: BoxFit.fill,
             ),
           ),
         ),
+      ),
+
+      floatingActionButton: BotaoAdicionarHome(
+        onAddSuccess: () {
+          // Quando salvar um desenho lá na outra tela,
+          // essa função dispara o GET de novo para trazer a lista atualizada
+          get();
+        },
       ),
 
       body: Container(
@@ -71,7 +81,7 @@ class _TelaGetState extends State<TelaGet> {
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/fundo.png'), // Caminho corrigido
+            image: AssetImage('assets/images/fundo.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -94,39 +104,6 @@ class _TelaGetState extends State<TelaGet> {
                 ),
                 child: Column(
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        print("Ir para tela de adicionar");
-                      },
-                      child: Container(
-                        width: 190,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          color: const Color(0xfffff200),
-                        ),
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => TelaFormulario(),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            "ADICIONAR\nDESENHOS",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontFamily: 'Cartoon',
-                              color: Colors.black,
-                              height: 1.2,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-
                     const SizedBox(height: 25),
 
                     Container(
@@ -135,7 +112,6 @@ class _TelaGetState extends State<TelaGet> {
                       decoration: BoxDecoration(color: const Color(0xff009fe3)),
                       child: Column(
                         children: [
-                          // Título "DESENHOS"
                           const Text(
                             "DESENHOS",
                             style: TextStyle(
@@ -145,7 +121,9 @@ class _TelaGetState extends State<TelaGet> {
                               letterSpacing: 1.5,
                             ),
                           ),
+
                           const SizedBox(height: 15),
+
                           // Grid interno de 2 colunas
                           GridView.builder(
                             shrinkWrap: true,

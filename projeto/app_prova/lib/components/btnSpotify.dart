@@ -29,10 +29,10 @@ class BotaoSpotify extends StatelessWidget {
           _mostrarAviso(context, "Nenhuma música cadastrada para este desenho.", Colors.orange);
         }
       },
-      icon: const Icon(Icons.music_note, color: Colors.white),
+      icon: const Icon(Icons.music_note, color: Colors.black),
       label: const Text(
         "SPOTIFY", 
-        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontFamily: 'Cartoon'),
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontFamily: 'Cartoon'),
       ),
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xFF1DB954),

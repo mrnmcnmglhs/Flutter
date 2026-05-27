@@ -56,20 +56,19 @@ class TelaVerDesenho extends StatelessWidget {
             children: [
               const SizedBox(height: 20),
 
-              Padding(
-                padding: const EdgeInsets.only(top: 15, right: 350),
+              Padding(padding: EdgeInsetsGeometry.only(right: 310),
                 child: GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Container(
-                    padding: const EdgeInsets.all(6),
-                    decoration: BoxDecoration(color: Colors.white),
-                    child: const Icon(
-                      Icons.arrow_back,
-                      color: Colors.black,
-                      size: 26,
+                    onTap: () => Navigator.pop(context),
+                    child: Container(
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(color: Colors.white),
+                      child: const Icon(
+                        Icons.arrow_back,
+                        color: Colors.black,
+                        size: 24,
+                      ),
                     ),
-                  ),
-                ),
+                  ), 
               ),
 
               const SizedBox(height: 15),
@@ -171,7 +170,6 @@ class TelaVerDesenho extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Botão Deletar (Magenta)
                     BotaoDeletar(
                       // Puxa o ID do mapa do desenho atual vindo do JSON
                       idDesenho: int.parse(desenho['id'].toString()),
@@ -191,7 +189,6 @@ class TelaVerDesenho extends StatelessWidget {
                       },
                     ),
 
-                    // Botão Editar (Azul/Ciano)
                     BotaoEditar(
                       desenho: desenho, // Passa o mapa do desenho atual
                       onEditSuccess: () {
@@ -214,7 +211,7 @@ class TelaVerDesenho extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 40), // Espaço antes do rodapé
+              const SizedBox(height: 40),
 
               Container(
                 width: double.infinity,
