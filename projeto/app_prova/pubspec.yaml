@@ -15,6 +15,7 @@ dependencies:
   http: ^1.6.0
   shared_preferences: ^2.5.5
   cached_network_image: ^3.4.1
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:
@@ -30,6 +31,7 @@ flutter:
     - assets/images/fundo.png
     - assets/images/header.png
     - assets/images/rodape-grande.png
+    - assets/images/fundo-editar.png
 
   fonts:
     - family: Cartoon
