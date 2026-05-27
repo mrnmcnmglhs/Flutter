@@ -1,4 +1,3 @@
-import 'package:app_prova/screens/Desenho.dart';
 import 'package:app_prova/screens/get.dart';
 import 'package:flutter/material.dart';
 

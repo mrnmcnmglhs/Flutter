@@ -1,5 +1,7 @@
 import 'dart:convert';
-import 'package:app_prova/components/Card.dart'; 
+import 'package:app_prova/components/Card.dart';
+import 'package:app_prova/components/UltimosDesenhos.dart';
+import 'package:app_prova/screens/post.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -19,7 +21,7 @@ class _TelaGetState extends State<TelaGet> {
   void get() async {
     try {
       final requisicao = await http.get(
-        Uri.parse("https://app-prova-api.onrender.com/dados")
+        Uri.parse("https://app-prova-api.onrender.com/dados"),
       );
 
       if (requisicao.statusCode == 200) {
@@ -62,6 +64,7 @@ class _TelaGetState extends State<TelaGet> {
           ),
         ),
       ),
+
       body: Container(
         width: double.infinity,
         height: double.infinity,

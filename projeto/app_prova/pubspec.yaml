@@ -29,6 +29,7 @@ flutter:
   assets:
     - assets/images/fundo.png
     - assets/images/header.png
+    - assets/images/rodape-grande.png
 
   fonts:
     - family: Cartoon
