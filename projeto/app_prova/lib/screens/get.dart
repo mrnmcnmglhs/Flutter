@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class TelaGet extends StatefulWidget {
+
   const TelaGet({super.key});
 
   @override
@@ -47,15 +48,16 @@ class _TelaGetState extends State<TelaGet> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.transparent, 
-        
-        
+        elevation: 0,
+        // Ajuste o tamanho caso o banner do header precise de mais espaço
+        toolbarHeight: 70, 
         flexibleSpace: Container(
           width: double.infinity,
           height: double.infinity,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('../../assets/images/header.png'), 
-              fit: BoxFit.cover,
+              image: AssetImage('assets/images/header.png'), // Caminho corrigido
+              fit: BoxFit.fill,
             ),
           ),
         ),
@@ -65,14 +67,12 @@ class _TelaGetState extends State<TelaGet> {
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('../../assets/images/fundo.png'), 
-            fit: BoxFit.cover, // Faz a imagem esticar para cobrir a tela toda sem achatar
+            image: AssetImage('assets/images/fundo.png'), // Caminho corrigido
+            fit: BoxFit.cover,
           ),
         ),
-        
-  
         child: carregando
-            ? const Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator(color: Colors.cyan))
             : resultado.isEmpty
                 ? const Center(
                     child: Text(
@@ -80,25 +80,82 @@ class _TelaGetState extends State<TelaGet> {
                       style: TextStyle(color: Colors.white, backgroundColor: Colors.black54),
                     ),
                   )
-                : GridView.builder(
-                    padding: const EdgeInsets.all(5),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 5.0,
-                      mainAxisSpacing: 3.0,
+                : SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                    child: Column(
+                      children: [
+                        // --- BLOCO AZUL DO FIGMA ---
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            color: const Color(0xff009fe3), // Azul do Figma
+                            border: Border.all(color: Colors.black, width: 4),
+                          ),
+                          child: Column(
+                            children: [
+                              // Título "DESENHOS"
+                              const Text(
+                                "DESENHOS",
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontFamily: 'Cartoon',
+                                  color: Colors.black,
+                                  letterSpacing: 1.5,
+                                ),
+                              ),
+                              const SizedBox(height: 15),
+                              // Grid interno de 2 colunas
+                              GridView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2, // CORRIGIDO: 2 colunas como no Figma
+                                  crossAxisSpacing: 15.0,
+                                  mainAxisSpacing: 15.0,
+                                  childAspectRatio: 0.65, // Deixa os cards mais esticados/verticais
+                                ),
+                                itemCount: resultado.length,
+                                itemBuilder: (context, index) {
+                                  final item = resultado[index];
+                                  // Pegando a primeira imagem do array de posters
+                                  return CardImage(image: item["poster"][0]);
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        
+                        const SizedBox(height: 25),
+
+                        // --- BOTÃO AMARELO (ADICIONAR) ---
+                        GestureDetector(
+                          onTap: () {
+                            // Próximo passo: Navegação para a tela de Add
+                            print("Ir para tela de adicionar");
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: const Color(0xfffff200), // Amarelo CN
+                              border: Border.all(color: Colors.black, width: 4),
+                            ),
+                            child: const Text(
+                              "ADICIONAR\nDESENHOS",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontFamily: 'Cartoon',
+                                color: Colors.black,
+                                height: 1.1,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                      ],
                     ),
-                    itemCount: resultado.length,
-                    itemBuilder: (context, index) {
-                      final item = resultado[index];
-                      return CardImage(image: item["poster"][0]);
-                    },
                   ),
-      ),
-      
-      // O botão flutuante continua no lugar dele, fora do body
-      floatingActionButton: FloatingActionButton(
-        onPressed: get,
-        child: const Icon(Icons.refresh),
       ),
     );
   }
