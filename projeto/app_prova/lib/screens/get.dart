@@ -109,7 +109,7 @@ class _TelaGetState extends State<TelaGet> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => TelaPost(),
+                                builder: (context) => TelaFormulario(),
                               ),
                             );
                           },
